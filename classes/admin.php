@@ -60,7 +60,7 @@ $num_rows = $login->rowCount();
             $_SESSION['id'] =$data['id'] ;
             // var_dump ($data['id']);
             // var_dump ($data['name']);
-            header('location: index.php');
+            header('location: dashboards/articledash.php');
     }else{
         header('location: login.php');
 
