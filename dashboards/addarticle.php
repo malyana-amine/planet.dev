@@ -21,27 +21,27 @@ include '../classes/article.php' ;
     <form method="POST" enctype="multipart/form-data">
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="title">Article Title</label>
-          <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="title" id="title" />
+        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="title[]" />
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="image">Article Image</label>
-          <input type="file" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="image" />
+          <input type="file" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="image[]" />
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="subtitle">Article Subtitle</label>
-          <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="subtitle" id="subtitle" />
+        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="subtitle[]"  />
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="paragraph">Article Paragraph</label>
-          <textarea class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="paragraph" id="paragraph"></textarea>
+          <textarea class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="paragraph[]" ></textarea>
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="links">Article Links</label>
-          <input type="url" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="links" id="links" />
+          <input type="url" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="links[]"/>
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="category">Article Category</label>
-          <select name="category" id="category" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96">
+          <select name="category[]" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96">
             <option value="">-- Select a Category --</option>
 
             <?php
@@ -54,48 +54,34 @@ foreach($result1 as $row){
   <option value="<?= $row['id'] ?>"> <?php echo $row['categoryname'] ?></option>
 <?php }
 ?>
-          </select>
+          </select> 
+          
+          <div id="container">
+            
+    </div>
+
         </div>
         <div class="flex items-center justify-center mt-3">
+          <div id="addForm" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded">
+      Add Form
+    </div>
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" name="submit" type="submit">Submit</button>
         </div>
+
+     
+
+
+
+
+
       </form>
 
-      <?php
-                    if( isset($_POST['submit'])){
-                      // var_dump($_POST);
-                      // echo '<br>';
-                      // var_dump($_FILES);
-                      // die();
-                      $title = $_POST['title'];
-                      $image = $_FILES['image']['name'];
-                      // var_dump($image);
-
-                      $filename = uniqid();
-                      $extension = pathinfo( $image, PATHINFO_EXTENSION);
-                      $newname = "book-".$filename . "." . $extension;
-          
-                      $target = "../img/".$newname;
-                      move_uploaded_file($_FILES['image']['tmp_name'], $target);
-
-                      $subtitle = $_POST['subtitle'];
-                      $paragraph = $_POST['paragraph'];
-                      $links = $_POST['links'];
-                      $category = $_POST['category'];
-                      $autour = $_SESSION['id'];
-                      
-
-                      $ss1 = new article($title,$newname,$subtitle,$paragraph,$links,'1',$category);
-                      $ss1->addSession();
-                    }?>
+      
 
 
 
 
-<div id="container">
-    </div><button id="addForm" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded">
-      Add Form
-    </button>
+
 
 
   <script>
@@ -105,11 +91,46 @@ foreach($result1 as $row){
 
       let formContainer = document.getElementById('container');
 
-      let form = document.createElement('form');
+      let div = document.createElement('div');
 
-      form.innerHTML = `##`;
+      div.innerHTML = `    <div class="flex flex-col items-center">
+          <label class="text-lg font-bold" for="title">Article Title</label>
+        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="title[]" />
+        </div>
+        <div class="flex flex-col items-center">
+          <label class="text-lg font-bold" for="image">Article Image</label>
+          <input type="file" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="image[]" />
+        </div>
+        <div class="flex flex-col items-center">
+          <label class="text-lg font-bold" for="subtitle">Article Subtitle</label>
+        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="subtitle[]" />
+        </div>
+        <div class="flex flex-col items-center">
+          <label class="text-lg font-bold" for="paragraph">Article Paragraph</label>
+        <textarea class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="paragraph[]"></textarea>
+        </div>
+        <div class="flex flex-col items-center">
+          <label class="text-lg font-bold" for="links">Article Links</label>
+        <input type="url" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="links[]" />
+        </div>
+        <div class="flex flex-col items-center">
+          <label class="text-lg font-bold" for="category">Article Category</label>
+        <select name="category[]" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96">
+            <option value="">-- Select a Category --</option>
 
-      formContainer.append(form);
+            <?php
+            $result1=Category::selectcategory();
+?>
+<?php
+
+foreach($result1 as $row){
+                ?>
+  <option value="<?= $row['id'] ?>"> <?php echo $row['categoryname'] ?></option>
+<?php }
+?>
+          </select> `;
+
+      formContainer.append(div);
     });
   </script>
 
@@ -118,3 +139,34 @@ foreach($result1 as $row){
 </body>
 </html>
 
+<?php
+                    if( isset($_POST['submit'])){
+                      // var_dump($_POST);
+                      // echo '<br>';
+                      // var_dump($_FILES);
+                      // die();
+                      
+                      for ($i = 0 ; $i<count($_POST['title']) ; $i++){
+
+                      
+                      $title = $_POST['title'][$i];
+                      $image = $_FILES['image']['name'][$i];
+                      // var_dump($image);
+
+                      $filename = uniqid();
+                      $extension = pathinfo( $image, PATHINFO_EXTENSION);
+                      $newname = "book-".$filename . "." . $extension;
+          
+                      $target = "../img/".$newname;
+                      move_uploaded_file($_FILES['image']['tmp_name'][$i], $target);
+
+                      $subtitle = $_POST['subtitle'][$i];
+                      $paragraph = $_POST['paragraph'][$i];
+                      $links = $_POST['links'][$i];
+                      $category = $_POST['category'][$i];
+                      $autour = $_SESSION['id'];
+                      
+
+                      $ss1 = new article($title,$newname,$subtitle,$paragraph,$links,$autour,$category);
+                      $ss1->addArticle();
+                    };}?>

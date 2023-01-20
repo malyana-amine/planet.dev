@@ -1,5 +1,5 @@
 <?php
-include "database.php";
+include_once "database.php";
 session_start();
 
 
@@ -60,7 +60,7 @@ $num_rows = $login->rowCount();
             $_SESSION['id'] =$data['id'] ;
             // var_dump ($data['id']);
             // var_dump ($data['name']);
-            header('location: dashboards/articledash.php');
+            header('location: dashboards/addarticle.php');
     }else{
         header('location: login.php');
 

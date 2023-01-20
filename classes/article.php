@@ -1,5 +1,5 @@
 <?php
-// include "database.php";
+include_once "database.php";
 // session_start();
 
 
@@ -13,7 +13,7 @@ class article {
     private $autour;
     private $categoryid;
 
-    public function __construct($title,$image, $smalltitle, $paragraph,$linkes,$autour,$categoryid)
+    public function __construct($title = null,$image = null , $smalltitle = null , $paragraph = null,$linkes = null,$autour = null,$categoryid = null)
     {
         $this->title = $title;
         $this->image = $image;
@@ -105,13 +105,39 @@ class article {
 
 
 
-    public function addSession(){
+    public function addArticle(){
 
         $conn = DbConnection::connect();
 
         $stmt = $conn->prepare("INSERT INTO `article`(`title`, `image`, `smalltitle`, `paragraph`, `linkes`, `autour`, `categoryid`) VALUES ('$this->title','$this->image','$this->smalltitle','$this->paragraph','$this->linkes','$this->autour','$this->categoryid')");
 
         $stmt->execute();
+     }
+
+     public static function selectarticle(){
+
+        $stmt = DbConnection::connect()->prepare("SELECT a.id, a.title, a.image, a.smalltitle, a.paragraph, a.linkes, ad.username as an, c.categoryname as ct FROM `article` a 
+        INNER JOIN admin ad on a.autour = ad.id
+        INNER JOIN category c on a.categoryid = c.id");
+        $stmt ->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+     }
+     public function updateArticle(){
+
+        $conn = DbConnection::connect();
+
+        $stmt = $conn->prepare("UPDATE `article` SET `title`='$this->title',`image`='$this->image',`smalltitle`='$this->smalltitle',`paragraph`='$this->paragraph',`linkes`='$this->linkes',`categoryid`='$this->categoryid' WHERE $this->id = $id");
+
+        $stmt->execute();
+     }
+     public  function getArticle($id){
+        $stmt = DbConnection::connect()->prepare("SELECT `id`, `title`, `image`, `smalltitle`, `paragraph`, `linkes`, `autour`, `categoryid` FROM `article` WHERE  id = $id ");
+        $stmt ->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        
+
      }
 
 }
