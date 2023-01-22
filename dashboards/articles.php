@@ -56,15 +56,18 @@ include '../classes/article.php' ;
                         <td><?= $row['ct'] ?></td>
                         <td><?= $row['an'] ?></td>
                         <td>
-                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" value="<?= $row['id'] ?>" type="submit">delete</button>
+                            <a href="deleteArticle.php?id=<?php echo $row['id']; ?>" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" value="<?= $row['id'] ?>" name="delete" type="submit">delete</a>
                             <a href="updateArticle.php?id=<?php echo $row['id']; ?>"><i class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">update</i></a>
-                            <!-- <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded" value="<?= $row['id'] ?>" href="" type="submit">update</button> -->
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value="<?= $row['id'] ?>" type="submit">view</button>
 
                         </td>
 
 
                     </tr>
+                    
+                    
+
+
                     <?php }
                     ?>
 

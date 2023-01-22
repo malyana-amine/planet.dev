@@ -124,11 +124,11 @@ class article {
 
 
      }
-     public function updateArticle(){
+     public function updateArticle($id){
 
         $conn = DbConnection::connect();
 
-        $stmt = $conn->prepare("UPDATE `article` SET `title`='$this->title',`image`='$this->image',`smalltitle`='$this->smalltitle',`paragraph`='$this->paragraph',`linkes`='$this->linkes',`categoryid`='$this->categoryid' WHERE $this->id = $id");
+        $stmt = $conn->prepare("UPDATE `article` SET `title`='$this->title',`image`='$this->image',`smalltitle`='$this->smalltitle',`paragraph`='$this->paragraph',`linkes`='$this->linkes',`categoryid`='$this->categoryid' WHERE id = $id");
 
         $stmt->execute();
      }
@@ -138,6 +138,10 @@ class article {
         return $stmt->fetch(PDO::FETCH_ASSOC);
         
 
+     }
+     public  function deleteArticle($id){
+        $stmt = DbConnection::connect()->prepare("DELETE FROM `article` WHERE  id = $id ");
+        $stmt ->execute(); 
      }
 
 }

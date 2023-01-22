@@ -29,23 +29,24 @@ $result2=$result1->getArticle($_GET['id']);
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="image">Article Image</label>
-          <input type="file" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="image[]" />
+          <input type="file" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" value="" name="image" />
+          <img class="h-20 w-20" src="../img/<?php echo $result2['image'] ?>" alt="">
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="subtitle">Article Subtitle</label>
-        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="subtitle[]"  />
+        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" value="<?php echo $result2['smalltitle'] ?>" name="subtitle"  />
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="paragraph">Article Paragraph</label>
-          <textarea class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="paragraph[]" ></textarea>
+          <textarea class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" value="" name="paragraph" ><?php echo $result2['paragraph'] ?></textarea>
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="links">Article Links</label>
-          <input type="url" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="links[]"/>
+          <input type="url" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" value="<?php echo $result2['linkes'] ?>" name="links"/>
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="category">Article Category</label>
-          <select name="category[]" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96">
+          <select value="" name="category" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96">
             <option value="">-- Select a Category --</option>
 
             <?php
@@ -55,9 +56,19 @@ $result2=$result1->getArticle($_GET['id']);
 
 foreach($result1 as $row){
                 ?>
-  <option value="<?= $row['id'] ?>"> <?php echo $row['categoryname'] ?></option>
-<?php }
+           <?php      if($row['id']  ===  $result2['categoryid']){
+    ?><option value="<?= $row['id'] ?>" selected> <?php echo $row['categoryname'] ?></option>
+    <?php } else { ?>
+        <option value="<?= $row['id'] ?>"> <?php echo $row['categoryname'] ?></option>
+    <?php }
 ?>
+ 
+  
+     
+<?php 
+}
+?>
+
           </select> 
           
           <div id="container">
@@ -66,7 +77,7 @@ foreach($result1 as $row){
 
         </div>
         <div class="flex items-center justify-center mt-3"></div>
-          <input type="hidden" value="<?php echo $_GET['id'];?>">
+          <input name="id" type="hidden" value="<?php echo $_GET['id'];?>">
           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" name="submit" type="submit">Submit</button>
         </div>
       </form>
@@ -87,58 +98,27 @@ foreach($result1 as $row){
 <?php
 
 if( isset($_POST['submit'])){
-    
-        $id = $_POST['id'];
-        $image = $_FILES['image']['name'];
-        $name = $_POST['Nom'];
-        $email = $_POST['Email'];
-        $phone = $_POST['Phone'];
-        $enroll_n = $_POST['Enroll'];
-        $date_a = $_POST['Date_A'];    
-        
-        $target = "images/profiles/".basename($image);
-        
-    
-        $result = mysqli_query($conn, "UPDATE students SET image='$image', name='$name', email='$email', phone='$phone' , enroll_n='$enroll_n' , date_a='$date_a'  WHERE id=$id ");
+  $id = $_POST['id'];
+  $title = $_POST['title'];
+  $image = $_FILES['image']['name'];
+  // var_dump($image);
 
-        header("Location: students.php"); 
+  $filename = uniqid();
+  $extension = pathinfo( $image, PATHINFO_EXTENSION);
+  $newname = "book-".$filename . "." . $extension;
 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-            $msg = "Image uploaded successfully";
-        }else{
-            $msg = "Failed to upload image";
-        }
+  $target = "../img/".$newname;
+  move_uploaded_file($_FILES['image']['tmp_name'], $target);
+
+  $subtitle = $_POST['subtitle'];
+  $paragraph = $_POST['paragraph'];
+  $links = $_POST['links'];
+  $category = $_POST['category'];
+  $autour = $_SESSION['id'];
+
+  $ss1 = new article($title,$newname,$subtitle,$paragraph,$links,$autour,$category);
+                      $ss1->updateArticle($id);
+                      header('Location: articles.php');
 }
+
 ?>
-
-<?php
-                
-                      // var_dump($_POST);
-                      // echo '<br>';
-                      // var_dump($_FILES);
-                      // die();
-                      
-                    //   for ($i = 0 ; $i<count($_POST['title']) ; $i++){
-
-                      
-                    //   $title = $_POST['title'][$i];
-                    //   $image = $_FILES['image']['name'][$i];
-                    //   // var_dump($image);
-
-                    //   $filename = uniqid();
-                    //   $extension = pathinfo( $image, PATHINFO_EXTENSION);
-                    //   $newname = "book-".$filename . "." . $extension;
-          
-                    //   $target = "../img/".$newname;
-                    //   move_uploaded_file($_FILES['image']['tmp_name'][$i], $target);
-
-                    //   $subtitle = $_POST['subtitle'][$i];
-                    //   $paragraph = $_POST['paragraph'][$i];
-                    //   $links = $_POST['links'][$i];
-                    //   $category = $_POST['category'][$i];
-                    //   $autour = $_SESSION['id'];
-                      
-
-                    //   $ss1 = new article($title,$newname,$subtitle,$paragraph,$links,$autour,$category);
-                    //   $ss1->addArticle();
-                   // };?>
