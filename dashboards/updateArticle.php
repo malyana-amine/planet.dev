@@ -82,14 +82,6 @@ foreach($result1 as $row){
         </div>
       </form>
 
-      
-
-
-
-
-
-
-
 
 </body>
 </html>

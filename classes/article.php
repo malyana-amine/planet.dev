@@ -144,4 +144,11 @@ class article {
         $stmt ->execute(); 
      }
 
+     public static function searchArticle($search){
+        $stmt = DbConnection::connect()->prepare("SELECT a.id, a.title, a.image, a.smalltitle, a.paragraph, a.linkes, ad.username as an, c.categoryname as ct FROM `article` a 
+        INNER JOIN admin ad on a.autour = ad.id
+        INNER JOIN category c on a.categoryid = c.id where a.title LIKE '%$search%'");
+        $stmt ->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+     }
 }

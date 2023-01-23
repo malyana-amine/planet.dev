@@ -8,7 +8,7 @@ class admin {
     private $username;
     private $password;
 
-    public function __construct($username, $password)
+    public function __construct($username=null, $password=null)
     {
         $this->username = $username;
         $this->password = $password;
@@ -50,21 +50,28 @@ class admin {
 
 $num_rows = $login->rowCount();
 
-// var_dump ($num_rows);
-
         if ($num_rows == 1) {
              
 
             $data=$login->fetch(PDO::FETCH_ASSOC);
             $_SESSION['username'] =$data['username'] ;
             $_SESSION['id'] =$data['id'] ;
-            // var_dump ($data['id']);
-            // var_dump ($data['name']);
             header('location: dashboards/addarticle.php');
     }else{
         header('location: login.php');
 
     }
 
+    }
+    public function logoutadmin(){
+        session_destroy();
+        header('location: ../login.php');
+    }
+
+
+    public static function selectadmin(){
+        $stmt = DbConnection::connect()->prepare("SELECT * FROM `admin`");
+        $stmt ->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
