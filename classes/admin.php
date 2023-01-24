@@ -65,7 +65,7 @@ $num_rows = $login->rowCount();
     }
     public function logoutadmin(){
         session_destroy();
-        header('location: ../login.php');
+        header('location: ../index.php');
     }
 
 

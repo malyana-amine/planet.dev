@@ -37,17 +37,17 @@ include '../classes/admin.php' ;
     </div>
     <section class="w-4/5">    
     <nav class="bg-gray-300">
-<div class="flex justify-between px-10 py-6">
-    <p class="text-2xl font-bold" >home</p>
+<div class="flex justify-between md:px-10 md:py-6">
+    <p class="md:text-2xl text-lg font-semibold md:font-bold" >home</p>
     <div class="flex">
-            <p class="text-2xl font-bold" >admin</p>
-            <a href="logout.php"><i class=" px-6 text-2xl fa-solid fa-right-from-bracket"></i></a>
+            <p class="md:text-2xl text-lg font-semibold md:font-bold" >admin</p>
+            <a href="logout.php"><i class=" px-6 md:text-2xl text-lg fa-solid fa-right-from-bracket"></i></a>
     </div>
 </div>
     </nav>
 
 
-    <div class="mt-10">
+    <div class="mt-10 px-2">
                 <h1 class="text-lg font-bold text-black">Status</h1>
             </div>
             <div class="grid grid-rows-2 mt-3 grid-flow-col gap-3">

@@ -15,9 +15,9 @@ include './classes/admin.php' ;
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-100">
     <form action="" method="post">
-<div class="flex flex-col items-center m-60 p-10">
+<div class="flex flex-col items-center m-0 md:m-60 p-10">
     <div class="text-3xl font-bold">Planet.DEV admin</div>
     <div class="w-48 h-0.5 m-2 bg-slate-400"></div>
 
@@ -30,7 +30,7 @@ include './classes/admin.php' ;
     <input name="password" class="border  w-64 h-9 border-slate-900" type="password"></div>
 
     <div class="w-48 h-0.5 m-2 bg-slate-400"></div>
-    <button type="submit" name="submit" class="rounded-lg border px-3 py-1 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-pink-500 hover:to-yellow-500 ...">
+    <button type="submit" name="submit" class="rounded-lg border px-3 py-1 bg-gradient-to-r text-slate-100 from-slate-700 to-slate-600 hover:from-slate-500 hover:to-slate-400 ...">
         login
       </button>
     </div>

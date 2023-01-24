@@ -36,24 +36,14 @@ include '../classes/article.php' ;
     </div>
 </div>
     </nav>
-    <div class="flex flex-col items-center">
-
-
-<!-- 
-        <h1 class="text-2xl font-bold p-8">article1</h1>
-        <img class="w-96 h-72 " src="/img/book-63c7cc4f1ca21.jpg" alt="##">
-        <h3 class="text-lg font-bold">Article Subtitle1</h3>
-        <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et labore veritatis iste, eaque hic, assumenda aliquid amet reiciendis ipsum laudantium voluptates expedita autem sit nisi dicta molestiae! Ea, aperiam. Aliquid!</p>
-        <h3 class="text-lg font-bold hover:text-red-700">source link : </h3>
-        <a class="text-indigo-700 font-bold hover:text-red-700" href="#">ammmqmmqm</a> -->
-
-
-        <div class="ms-4 me-4 mt-5">
+    <div class="flex flex-col items-center ">
+        
+        <div class="ms-4 me-4 mt-5 bg-zinc-100">
         <form class="relative flex items-center" method="get">
   <input class="bg-gray-200 rounded-md p-2 w-full focus:outline-none focus:shadow-outline-blue focus:border-blue-300" type="text" name="query" placeholder="Search...">
   <button name="submit" class="bg-blue-500 text-white rounded-md p-2 ml-2 hover:bg-blue-600 focus:outline-none">Search</button>
 </form>
-            <table class="table table-primary table-striped table-responsive hover">
+            <table class="table-fixed overflow-scroll h-max">
                 <thead>
                     <tr>
                         <th class="pr-12 text-2xl">title</th>
@@ -73,10 +63,10 @@ $result1=article::searchArticle($search);
 
 <tr>
 
-    <td><?= $result1['title'] ?></td>
-    <td><?= $result1['ct'] ?></td>
-    <td><?= $result1['an'] ?></td>
-    <td>
+    <td class="px-4"><?= $result1['title'] ?></td>
+    <td class="px-4"><?= $result1['ct'] ?></td>
+    <td class="px-4"><?= $result1['an'] ?></td>
+    <td class="px-4">
         <a href="deleteArticle.php?id=<?php echo $result1['id']; ?>" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" value="<?= $result1['id'] ?>" name="delete" type="submit">delete</a>
         <a href="updateArticle.php?id=<?php echo $result1['id']; ?>" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">update</a>
         <a href="viewArticle.php?id=<?php echo $result1['id']; ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" value="<?= $result1['id'] ?>" type="submit">view</a>
@@ -106,10 +96,10 @@ $result1=article::searchArticle($search);
 
                     <tr>
 
-                        <td><?= $row['title'] ?></td>
-                        <td><?= $row['ct'] ?></td>
-                        <td><?= $row['an'] ?></td>
-                        <td>
+                        <td class="px-4"><?= $row['title'] ?></td>
+                        <td class="px-4"><?= $row['ct'] ?></td>
+                        <td class="px-4"><?= $row['an'] ?></td>
+                        <td class="px-4">
                             <a href="deleteArticle.php?id=<?php echo $row['id']; ?>" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" value="<?= $row['id'] ?>" name="delete" type="submit">delete</a>
                             <a href="updateArticle.php?id=<?php echo $row['id']; ?>"><i class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">update</i></a>
                             <a href="viewArticle.php?id=<?php echo $row['id']; ?>" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">view</a>

@@ -27,11 +27,11 @@ include '../classes/article.php' ;
 </div>
 <div class="w-4/5">
     <nav class="bg-gray-300">
-<div class="flex justify-between px-10 py-6">
-    <p class="text-2xl font-bold" >Add article</p>
+<div class="flex justify-between md:px-10 md:py-6">
+    <p class="md:text-2xl text-lg font-semibold md:font-bold" >Add article</p>
     <div class="flex">
-            <p class="text-2xl font-bold" >admin</p>
-            <a href="logout.php"><i class=" px-6 text-2xl fa-solid fa-right-from-bracket"></i></a>
+            <p class="md:text-2xl text-lg font-semibold md:font-bold" >admin</p>
+            <a href="logout.php"><i class=" px-6 md:text-2xl text-lg fa-solid fa-right-from-bracket"></i></a>
     </div>
 </div>
     </nav>
@@ -40,30 +40,35 @@ include '../classes/article.php' ;
 
 
 
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="w-full" >
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="title">Article Title</label>
-        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="title[]" />
+        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline md:mx-3 md:px-3 md:py-2 md:w-96 " name="title[]" />
+        <small class="titleeror"></small>
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="image">Article Image</label>
-          <input type="file" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="image[]" />
+          <input type="file" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline md:mx-3 md:px-3 md:py-2 md:w-96 w-40 h-10 " name="image[]" />
+          
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="subtitle">Article Subtitle</label>
-        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="subtitle[]"  />
+        <input type="text" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline md:mx-3 md:px-3 md:py-2 md:w-96  " name="subtitle[]"  />
+        <small class="subtitleeror"></small>
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="paragraph">Article Paragraph</label>
-          <textarea class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="paragraph[]" ></textarea>
+          <textarea class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline md:mx-3 md:px-3 md:py-2 md:w-96  " name="paragraph[]" ></textarea>
+          <small class="subtitleeror"></small>
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="links">Article Links</label>
-          <input type="url" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96" name="links[]"/>
+          <input type="url" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline md:mx-3 md:px-3 md:py-2 md:w-96  " name="links[]"/>
+          <!-- <small class="linkeseror"></small> -->
         </div>
         <div class="flex flex-col items-center">
           <label class="text-lg font-bold" for="category">Article Category</label>
-          <select name="category[]" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline mx-3 px-3 py-2 w-96">
+          <select name="category[]" class="bg-gray-200 rounded-lg focus:outline-none focus:shadow-outline md:mx-3 md:px-3 md:py-2 md:w-96 category ">
             <option value="">-- Select a Category --</option>
 
             <?php
@@ -87,7 +92,7 @@ foreach($result1 as $row){
           <div id="addForm" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded">
       Add Form
     </div>
-          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" name="submit" type="submit">Submit</button>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded submit" name="submit" type="submit">Submit</button>
         </div>
 
      
@@ -155,7 +160,7 @@ foreach($result1 as $row){
       formContainer.append(div);
     });
   </script>
-
+<!-- <script src="../script/script.js"></script> -->
 
 
 </body>
