@@ -31,7 +31,7 @@ include './classes/admin.php' ;
 
     <div class="w-48 h-0.5 m-2 bg-slate-400"></div>
     <button type="submit" name="submit" class="rounded-lg border px-3 py-1 bg-gradient-to-r from-slate-700 to-slate-600 hover:from-pink-500 hover:to-yellow-500 ...">
-        log in
+        login
       </button>
     </div>
 </form>

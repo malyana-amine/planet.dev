@@ -56,7 +56,7 @@ $num_rows = $login->rowCount();
             $data=$login->fetch(PDO::FETCH_ASSOC);
             $_SESSION['username'] =$data['username'] ;
             $_SESSION['id'] =$data['id'] ;
-            header('location: dashboards/addarticle.php');
+            header('location: dashboards/home.php');
     }else{
         header('location: login.php');
 

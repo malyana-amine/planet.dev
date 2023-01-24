@@ -28,14 +28,14 @@ $result2=$result1->getArticle($_GET['id']);
 <div class="flex flex-col ">
 
 
-
-        <h1 class="text-2xl font-bold py-8"><?php echo $result2['title'] ?></h1>
-        <div class="flex self-center"> 
+        <div class="flex flex-col self-center"> 
+        <h1 class="text-4xl font-bold py-8"><?php echo $result2['title'] ?></h1>
+        
         <img class=" h-96 w-96" src="../img/<?php echo $result2['image'] ?>" alt=""></div>
         <h3 class="text-lg font-bold"><?php echo $result2['smalltitle'] ?></h3>
         <p class=""><?php echo $result2['paragraph'] ?></p>
-        <h3 class="text-lg font-bold hover:text-red-700">source link : </h3>
+        <h3 class="text-lg font-bold">source link : </h3>
         <a class="text-indigo-700 font-bold hover:text-red-700" href="<?php echo $result2['linkes'] ?>"><?php echo $result2['linkes'] ?></a>
-        <p>article by : </p>
+        <p>article by : admin </p>
 
 </div>
