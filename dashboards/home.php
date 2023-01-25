@@ -47,10 +47,12 @@ include '../classes/admin.php' ;
     </nav>
 
 
-    <div class="mt-10 px-2">
+    <div class=" mt-10 px-2">
                 <h1 class="text-lg font-bold text-black">Status</h1>
             </div>
-            <div class="grid grid-rows-2 mt-3 grid-flow-col gap-3">
+
+            <div class="flex flex-wrap">
+            <div class=" grid grid-rows-2 mt-3 grid-flow-col gap-3">
                 <div class="row-span-1 p-5 border border-inherit rounded-md bg-slate-50">
                     <div class="flex justify-between">
                         <div>
@@ -95,7 +97,7 @@ include '../classes/admin.php' ;
                     </div>
                 </div>
                 
-            </div>
+            </div></div>
     </section>
 </body>
 </html>
